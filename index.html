@@ -121,6 +121,87 @@
             display: flex;
             justify-content: center;
         }
+        /* Place the entire CSS code for your button here */
+        .button-86 {
+            all: unset;
+            width: 140px;
+            height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+            background: transparent;
+            border: none;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            user-select: none;
+            touch-action: manipulation;
+            overflow: hidden;
+            border: 2px solid #6a11cb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .button-86::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #6a11cb, #ff6b6b, #6a11cb);
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(8px);
+            animation: gradientMove 6s infinite;
+        }
+
+        .button-86:hover::before {
+            filter: blur(12px);
+        }
+
+        .button-86::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(45deg, #6a11cb, #ffb703);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+        }
+
+        .button-86:hover {
+            color: #ffb703;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 111, 255, 0.4), 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .button-86:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(255, 111, 255, 0.4), 0 1px 5px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -139,6 +220,7 @@
         <h2>About Me</h2>
         <p>Welcome to JCR Studios, where creativity meets code! I'm a self-taught coder with three years of experience dabbling in JavaScript, Python, HTML, and CSS. But that's just the tip of the iceberg. I'm also a creative problem solver, a marketing mad scientist, and a deep thinker. I love building tools that help others—though honestly, I do it just as much because it’s fun.
         </p>
+        <button class="button-86" role="button">Learn More</button>
         <p>This site is my experimental playground, a mix of passion projects, quirky ideas, and attempts to make something uniquely mine. Let's explore and have some fun!</p>
         <div class="interactive">
             <!-- Embed your 3D interactive component here -->
