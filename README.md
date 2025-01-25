@@ -1,2 +1,3 @@
 # JCRsite
-A BIO page about me
+
+## Welcome to my site! A little about me:
