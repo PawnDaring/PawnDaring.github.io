@@ -17,6 +17,41 @@
             background-color: #1a1a1a;
             color: #f4f4f9;
             line-height: 1.6;
+            overflow: hidden; /* Prevent scrolling during loading */
+        }
+
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out;
+            opacity: 1;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #lottie-container {
+            width: 200px;
+            height: 200px;
+        }
+
+        #main-content {
+            display: none;
+        }
+
+        body.loading {
+            overflow: hidden;
         }
 
         header {
@@ -115,91 +150,9 @@
         footer a:hover {
             text-decoration: underline;
         }
-
-        .interactive {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-        }
-        nav a {
-          all: unset; /* Resets all default styles */
-          text-decoration: none;
-          font-size: 16px;
-          font-weight: bold;
-          text-transform: uppercase;
-          color: #fff;
-          background: transparent;
-          border: 2px solid #6a11cb;
-          border-radius: 12px;
-          padding: 10px 20px;
-          position: relative;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 10px;
-          overflow: hidden;
-          transition: all 0.3s ease;
-        }
-        
-        nav a::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, #6a11cb, #ff6b6b, #670a42);
-          background-size: 400%;
-          z-index: -1;
-          filter: blur(8px);
-          animation: gradientMove 6s infinite;
-        }
-        
-        nav a:hover::before {
-          filter: blur(12px);
-        }
-        
-        nav a::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 12px;
-          padding: 2px;
-          background: linear-gradient(45deg, #6a11cb, #670a42);
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask-composite: exclude;
-          -webkit-mask-composite: destination-out;
-        }
-        
-        nav a:hover {
-          color: #ffb703;
-          background: rgba(255, 255, 255, 0.1);
-          transform: scale(1.05);
-          box-shadow: 0 4px 15px rgba(255, 111, 255, 0.4), 0 2px 10px rgba(255, 255, 255, 0.2);
-        }
-        
-        nav a:active {
-          transform: scale(0.98);
-          box-shadow: 0 2px 8px rgba(255, 111, 255, 0.4), 0 1px 5px rgba(255, 255, 255, 0.2);
-        }
-        
-        @keyframes gradientMove {
-          0% {
-            background-position: 0 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0 50%;
-          }
-        }
-
     </style>
 </head>
-<body>
+<body class="loading">
      <!-- Loading Screen -->
   <div id="loading-screen">
     <div id="lottie-container"></div>
@@ -207,31 +160,6 @@
 
   <!-- Main Content -->
   <div id="main-content">
-    <h1>Welcome to My Website!</h1>
-  </div>
-
-  <!-- Lottie Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-
-  <script>
-    // Initialize Lottie Animation
-    const lottieContainer = document.getElementById('lottie-container');
-    const animation = lottie.loadAnimation({
-      container: lottieContainer,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'Loading Icon.json' // Path to your JSON file in the root folder
-    });
-
-    // Show the loading screen for 5 seconds
-    setTimeout(() => {
-      const loadingScreen = document.getElementById('loading-screen');
-      const mainContent = document.getElementById('main-content');
-      loadingScreen.style.display = 'none'; // Hide the loading screen
-      mainContent.style.display = 'block'; // Show the main content
-    }, 5000);
-  </script>
     <header>
         <img src="Odd3Logo.png" alt="Odd3Logo" class="logo">
         <img src="JCRguy.png" alt="JCR Guy" class="jcr-guy">
@@ -296,5 +224,30 @@
     <footer>
         <p>&copy; 2025 JCR Studios. Built with ❤️, coffee, and a splash of chaos. <a href="#">Back to top</a></p>
     </footer>
+  </div>
+
+  <!-- Lottie Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+  <script>
+      const lottieContainer = document.getElementById('lottie-container');
+      const animation = lottie.loadAnimation({
+          container: lottieContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: 'Loading Icon.json' // Path to Lottie JSON file
+      });
+
+      setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          loadingScreen.classList.add('hidden');
+          setTimeout(() => {
+              loadingScreen.style.display = 'none';
+              document.getElementById('main-content').style.display = 'block';
+              document.body.classList.remove('loading');
+          }, 500);
+      }, 5000);
+  </script>
 </body>
 </html>
