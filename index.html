@@ -17,7 +17,6 @@
             background-color: #1a1a1a;
             color: #f4f4f9;
             line-height: 1.6;
-            overflow: hidden; /* Prevent scrolling during loading */
         }
 
         #loading-screen {
@@ -50,10 +49,6 @@
             display: none;
         }
 
-        body.loading {
-            overflow: hidden;
-        }
-
         header {
             background: linear-gradient(135deg, #030128, #670a42);
             color: white;
@@ -76,14 +71,78 @@
         }
 
         nav a {
-            color: #ffb703;
-            text-decoration: none;
-            margin: 0 1rem;
+            all: unset;
+            font-size: 16px;
             font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+            background: transparent;
+            border: 2px solid #6a11cb;
+            border-radius: 12px;
+            padding: 10px 20px;
+            position: relative;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #6a11cb, #ff6b6b, #670a42);
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(8px);
+            animation: gradientMove 6s infinite;
+        }
+
+        nav a:hover::before {
+            filter: blur(12px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(45deg, #6a11cb, #670a42);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: #ffb703;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 111, 255, 0.4), 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(255, 111, 255, 0.4), 0 1px 5px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
         }
 
         .section {
@@ -152,7 +211,7 @@
         }
     </style>
 </head>
-<body class="loading">
+<body>
      <!-- Loading Screen -->
   <div id="loading-screen">
     <div id="lottie-container"></div>
@@ -245,7 +304,6 @@
           setTimeout(() => {
               loadingScreen.style.display = 'none';
               document.getElementById('main-content').style.display = 'block';
-              document.body.classList.remove('loading');
           }, 500);
       }, 5000);
   </script>
