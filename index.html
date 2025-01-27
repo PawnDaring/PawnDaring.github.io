@@ -200,6 +200,38 @@
     </style>
 </head>
 <body>
+     <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div id="lottie-container"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <h1>Welcome to My Website!</h1>
+  </div>
+
+  <!-- Lottie Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+  <script>
+    // Initialize Lottie Animation
+    const lottieContainer = document.getElementById('lottie-container');
+    const animation = lottie.loadAnimation({
+      container: lottieContainer,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'Loading Icon.json' // Path to your JSON file in the root folder
+    });
+
+    // Show the loading screen for 5 seconds
+    setTimeout(() => {
+      const loadingScreen = document.getElementById('loading-screen');
+      const mainContent = document.getElementById('main-content');
+      loadingScreen.style.display = 'none'; // Hide the loading screen
+      mainContent.style.display = 'block'; // Show the main content
+    }, 5000);
+  </script>
     <header>
         <img src="Odd3Logo.png" alt="Odd3Logo" class="logo">
         <img src="JCRguy.png" alt="JCR Guy" class="jcr-guy">
