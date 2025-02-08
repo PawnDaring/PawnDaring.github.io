@@ -1,0 +1,38 @@
+.chaotic-button-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.chaotic-button {
+    position: absolute;
+    padding: 16px 32px;
+    font-size: 18px;
+    border: 3px solid;
+    background: crimson;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    animation: neonCycle 1.5s infinite linear;
+}
+
+@keyframes neonCycle {
+    0% { border-color: red; }
+    20% { border-color: orange; }
+    40% { border-color: yellow; }
+    60% { border-color: lime; }
+    80% { border-color: cyan; }
+    100% { border-color: magenta; }
+}
+
+@keyframes wiggle {
+    0% { transform: translateX(-5px) rotate(var(--rotation)) scale(var(--scale-size)); }
+    25% { transform: translateX(5px) rotate(var(--rotation)) scale(var(--scale-size)); }
+    50% { transform: translateX(-5px) rotate(var(--rotation)) scale(var(--scale-size)); }
+    75% { transform: translateX(5px) rotate(var(--rotation)) scale(var(--scale-size)); }
+    100% { transform: translateX(-5px) rotate(var(--rotation)) scale(var(--scale-size)); }
+}
