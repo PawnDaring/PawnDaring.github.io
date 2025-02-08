@@ -10,7 +10,6 @@ class CheekyButton extends HTMLElement {
           --border-speed: 3s;
           --border-color-1: #ff0080;
           --border-color-2: #00eaff;
-          --glossy-highlight: rgba(255, 255, 255, 0.2);
         }
 
         .button-container {
@@ -25,6 +24,7 @@ class CheekyButton extends HTMLElement {
           padding-top: 100px;
           border-bottom: 5px solid;
           border-image: linear-gradient(90deg, var(--border-color-1), var(--border-color-2)) 1;
+          z-index: 9999; /* Put it on top */
         }
 
         .custom-button {
