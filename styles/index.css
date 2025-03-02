@@ -107,6 +107,14 @@ section {
   align-items: center;
 }
 
+/* Mobile View - Adjust flex properties */
+@media (max-width: 500px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
 .tv-screen {
   flex: 1;
   max-width: 400px;
