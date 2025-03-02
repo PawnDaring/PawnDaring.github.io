@@ -1,310 +1,90 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JCR Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #1a1a1a;
-            color: #f4f4f9;
-            line-height: 1.6;
-        }
-
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            overflow: hidden;
-            transition: opacity 0.5s ease-out;
-            opacity: 1;
-        }
-
-        #loading-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #lottie-container {
-            width: 200px;
-            height: 200px;
-        }
-
-        #main-content {
-            display: none;
-        }
-
-        header {
-            background: linear-gradient(135deg, #030128, #670a42);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
-        }
-
-        nav {
-            margin: 1rem 0;
-            text-align: center;
-        }
-
-        nav a {
-            all: unset;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #fff;
-            background: transparent;
-            border: 2px solid #6a11cb;
-            border-radius: 12px;
-            padding: 10px 20px;
-            position: relative;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, #6a11cb, #ff6b6b, #670a42);
-            background-size: 400%;
-            z-index: -1;
-            filter: blur(8px);
-            animation: gradientMove 6s infinite;
-        }
-
-        nav a:hover::before {
-            filter: blur(12px);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            padding: 2px;
-            background: linear-gradient(45deg, #6a11cb, #670a42);
-            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            mask-composite: exclude;
-            -webkit-mask-composite: destination-out;
-        }
-
-        nav a:hover {
-            color: #ffb703;
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(255, 111, 255, 0.4), 0 2px 10px rgba(255, 255, 255, 0.2);
-        }
-
-        nav a:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 8px rgba(255, 111, 255, 0.4), 0 1px 5px rgba(255, 255, 255, 0.2);
-        }
-
-        @keyframes gradientMove {
-            0% {
-                background-position: 0 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0 50%;
-            }
-        }
-
-        .section {
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            background: #2a2a2a;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
-
-        .section h2 {
-            margin-bottom: 1rem;
-            color: #ffb703;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project {
-            background: #333;
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .project img {
-            max-width: 100%;
-            border-radius: 6px;
-        }
-
-        .project h3 {
-            margin: 1rem 0;
-            color: #ffb703;
-        }
-
-        .project a {
-            text-decoration: none;
-            color: #ff6b6b;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background: #333;
-            color: white;
-            margin-top: 2rem;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #ffb703;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>JCR Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
-     <!-- Loading Screen -->
-  <div id="loading-screen">
-    <div id="lottie-container"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div id="main-content">
+<!-- Character insert -->
     <header>
-        <img src="Odd3Logo.png" alt="Odd3Logo" class="logo">
-        <img src="JCRguy.png" alt="JCR Guy" class="jcr-guy">
-        <p>Animator - 3D Generalist - Developer</p>
+        <h1>JCR Portfolio</h1>
+        <img src="./images/Odd3Logo.png" alt="JCR Studios Logo" style="width: 20%; height: auto;">
+        <p>Motion Graphics - 3D Generalist - Web Developer</p><br>
     </header>
-    <nav>
-        <a href="#about">
-            Quick Bio <img src="Pointer1.png" alt="Pointer" class="nav-icon">
-        </a>
-        <a href="#projects">
-            Projects <img src="Pointer1.png" alt="Pointer" class="nav-icon">
-        </a>
-        <a href="#contact">
-            Contact <img src="Pointer1.png" alt="Pointer" class="nav-icon">
-        </a>
-    </nav>
-
-
-    <section id="about" class="section">
-        <h2>Quick Bio</h2>
-        <p>
-            Welcome to my little strange corner of the internet! Here you will find various experimental Web Applications I've been working on, as well as other projects I have deemed worthy enough to share with all you online party people. I hope you enjoy and maybe we can create something together! Cheers!!
-        </p>
-        
-    </section>
-
-    <section id="projects" class="section">
-        <h2>Projects</h2>
-        <p>Here’s a selection of the random, fun, and sometimes functional things I’ve thrown together over the years. Nothing too serious, just a little chaos, a little magic, and a lot of experimenting.
-        </p>
-        
-        <div class="projects">
-            <div class="project">
-                <h3>Word Web Association</h3>
-                <p>A word web that self generates as you enter in words or phrases. This little experiment was a means to see how ideas connect and make new observations. Its kind of inspired by Obsidian Note taking.</p>
-                <a href="#">Check it out</a>
-            </div>
-            <div class="project">
-                <h3>Interactive Kiosk Displays</h3>
-                <p>I do a lot of videos for Tradeshows, evenets, and Project purposals. Much of this work requires visuals to understand complex ideas. So, I decided to branch into interactive web pages to bolster that user experience.</p>
-                <a href="#">Take a look</a>
-            </div>
-            <div class="project">
-                <h3>Video Quiz</h3>
-                <p>Another type of interactive web application; its pretty basic. You watch videos and answer the questions correctly to pass. Might eventually turn this into a choose your own adventure game.</p>
-                <a href="#">Explore</a>
-            </div>
-            <div class="project">
-                <h3>360 Virtual Tour</h3>
-                <p>A fairly simple navigation application through a 360 enviornment. Inspired by websites like Kuula.co.
-                </p>
-                <a href="#">Explore</a>
-            </div>
+    <!-- Flip Cards Section -->
+    <h2>Skills</h2>
+    <section class="card-section">
+        <div class="card-container" id="card-container">
         </div>
     </section>
-
-    <section id="contact" class="section">
-        <h2>Contact Me</h2>
-        <p>COMING SOON!</p>
+    <section class="interactive-section">
+        <div id="3d-graph" style="width: 1000%; height: 100vh;"></div>
     </section>
+    <section>
+        <div class="container">
+            <!-- Chatbot -->
+            <div class="video-container">
+                <h3>2024 Demo REEL</h3>
+                <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/-KJ5rhFqSmE?si=of3lHgUyyylFaWnt" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="chat-container">
+                <div class="chat-header">Chat with my AI Agent</div>
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Say something..." autocomplete="off">
+                    <button id="send-button">Send</button>
+                </div>
+                <div class="Social">
+                    <a href="https://linktr.ee/jcrproductions/" target="_blank">
+                        <button class="Icons"><i class="fas fa-link"></i></button>
+                    </a>
+                    <a href="https://www.instagram.com/pawndaring/" target="_blank">
+                        <button class="Icons"><i class="fab fa-instagram"></i></button>
+                    </a>
+                    <a href="https://www.linkedin.com/in/james-richardson-31383652/" target="_blank">
+                        <button class="Icons"><i class="fab fa-linkedin-in"></i></button>
+                    </a>
+                    <a href="mailto:jacrich+consultation@gmail.com?subject=Hello&body=I%20wanted%20to%20reach%20out%20about...">
+                        <button class="Icons"><i class="fas fa-envelope"></i></button>
+                    </a>
+                    <a href="https://github.com/PawnDaring" target="_blank">
+                        <button class="Icons"><i class="fab fa-github"></i></button>
+                    </a>
 
-    <footer>
-        <p>&copy; 2025 JCR Studios. Built with ❤️, coffee, and a splash of chaos. <a href="#">Back to top</a></p>
-    </footer>
-  </div>
 
-  <!-- Lottie Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
-
-  <script>
-      const lottieContainer = document.getElementById('lottie-container');
-      const animation = lottie.loadAnimation({
-          container: lottieContainer,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          path: 'Loading Icon.json' // Path to Lottie JSON file
-      });
-
-      setTimeout(() => {
-          const loadingScreen = document.getElementById('loading-screen');
-          loadingScreen.classList.add('hidden');
-          setTimeout(() => {
-              loadingScreen.style.display = 'none';
-              document.getElementById('main-content').style.display = 'block';
-          }, 500);
-      }, 5000);
-  </script>
+                </div>
+            </div>
+            <!-- TV Screen -->
+            <div class="tv-screen">
+                <div class="grid" id="binary-grid"></div>
+            </div>            
+        </div>
+    </section>
+    <div id="animated-image-box">
+    </div>
+    <section>
+        <!-- Projects -->
+        <h2>My Projects</h2>
+        <div id="projects-container" class="projects-container"></div>
+    </section>
+    <section>
+        <h2></h2>
+        <div id="projects-container" class="projects-container">
+            <p>&copy; 2025 JCR Studios. All rights reserved.</p>
+        </div>
+    </section>
+    <!-- Scripts -->
+    <script src="./components/matrixAnimation.js"></script>
+    <script type="module" src="./components/projectGraph.js"></script>
+    <script type="module">
+        import { sendMessage } from './components/chatbot.js';
+        document.getElementById('send-button').addEventListener('click', sendMessage);
+    </script>
+    <script type="module" src="./components/skills.js"></script>
+    <script src="./components/projects.js"></script>
 </body>
 </html>
