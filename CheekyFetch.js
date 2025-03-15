@@ -78,7 +78,7 @@ class CheekyButton extends HTMLElement {
         <div class="button-container">
           <a href="https://pawndaring.github.io/" class="custom-button">
             <span class="button-text">Psst! <br> Need A Custom App?</span>
-            <img src="https://raw.githubusercontent.com/PawnDaring/PawnDaring.github.io/images/CheekyGuyW.png" 
+            <img src="https://raw.githubusercontent.com/PawnDaring/PawnDaring.github.io/main/images/CheekyGuyW.png" 
                  alt="Cheeky Character" class="button-png">
           </a>
         </div>
